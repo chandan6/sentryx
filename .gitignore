@@ -1,0 +1,7 @@
+# Ignore Python environment and logs
+.venv/
+__pycache__/
+
+# Ignore model files and saved data
+*.gguf
+/visualization/grafana-data/triage_results.csv
