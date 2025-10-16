@@ -1,29 +1,35 @@
 name: Snyk Security Scan
 
-# Triggers the workflow on pushes to the main branch
 on:
   push:
     branches: [ "main" ]
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   snyk_scan:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checks out your repository code so the job can access it
+      # Step 1: Checks out your repository code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Sets up the Snyk CLI in the runner
+      # Step 2: Sets up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      # Step 3: Installs your Python packages from requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      # Step 4: Sets up the Snyk CLI
       - name: Set up Snyk
         uses: snyk/actions/setup@master
       
-      # Step 3: Runs the Snyk scan using the secret token
+      # Step 5: Runs the Snyk scan (now that packages are installed)
       - name: Run Snyk to check for vulnerabilities
         run: snyk test
         env:
-          # The SNYK_TOKEN secret you created in GitHub
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
