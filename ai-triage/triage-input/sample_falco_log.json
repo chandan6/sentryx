@@ -1,50 +1,12 @@
-import json
-import os
-
-def triage_alert(log_entry: dict) -> str:
-    """
-    Analyzes a security log and returns a triage decision.
-    This is a simple placeholder for a future ML model.
-    """
-    print("--- Analyzing Log ---")
-    print(json.dumps(log_entry, indent=2))
-
-    # Basic logic: If a file is written to /bin by root, it's critical.
-    if (log_entry.get("rule") == "Write below binary dir" and
-        log_entry.get("output_fields", {}).get("user.name") == "root"):
-
-        decision = "CRITICAL: Immediate investigation required."
-        print(f"\nDecision: {decision}\n--------------------")
-        return decision
-    else:
-        decision = "LOW: Benign activity detected."
-        print(f"\nDecision: {decision}\n--------------------")
-        return decision
-
-# --- Main execution block ---
-if __name__ == "__main__":
-    # Construct the path to the log file relative to the script's location
-    # Assumes the script is run from a directory that contains 'triage-input'
-    try:
-        # For compatibility with different execution environments, get script dir
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        log_file_path = os.path.join(script_dir, 'triage-input', 'sample_falco_log.json')
-    except NameError:
-        # Handle cases where __file__ is not defined (e.g., interactive interpreter)
-        log_file_path = os.path.join('triage-input', 'sample_falco_log.json')
-
-
-    try:
-        # Ensure the directory exists before trying to open the file
-        if not os.path.exists(os.path.dirname(log_file_path)):
-             print(f"Error: Directory '{os.path.dirname(log_file_path)}' not found.")
-        else:
-            with open(log_file_path, 'r') as f:
-                sample_log = json.load(f)
-
-            triage_decision = triage_alert(sample_log)
-
-    except FileNotFoundError:
-        print(f"Error: Log file not found at {log_file_path}")
-    except json.JSONDecodeError:
-        print(f"Error: Could not decode JSON from the log file.")
+{
+  "output": "File below /bin opened for writing",
+  "priority": "Warning",
+  "rule": "Write below binary dir",
+  "time": "2025-10-17T01:30:00Z",
+  "output_fields": {
+    "evt.time": 1665999000000000000,
+    "fd.name": "/bin/hacked.txt",
+    "proc.name": "evil_script",
+    "user.name": "root"
+  }
+}

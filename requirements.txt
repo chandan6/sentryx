@@ -1,2 +1,10 @@
 pandas
 numpy
+scikit-learn
+joblib
+langchain
+torch
+transformers
+accelerate
+llama-cpp-python
+langchain-community
