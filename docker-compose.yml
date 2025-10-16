@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  falco:
+    image: falcosecurity/falco:latest
+    container_name: falco
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/host/var/run/docker.sock
+      - /proc:/host/proc:ro
+      - /boot:/host/boot:ro
+      - /lib/modules:/host/lib/modules:ro
+      - /usr:/host/usr:ro
+
+  vector:
+    image: timberio/vector:0.42.1-debian
+    container_name: vector
+    volumes:
+      - ./vector/vector.toml:/etc/vector/vector.toml
+    depends_on:
+      - falco
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - vector
+
+networks:
+  default:
+    driver: bridge

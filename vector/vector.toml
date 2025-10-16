@@ -1,0 +1,15 @@
+[sources.falco]
+  type = "file"
+  include = ["/falco-logs/falco.json"]
+
+[transforms.parse]
+  type = "remap"
+  inputs = ["falco"]
+  source = '''
+structured = parse_json!(.message)
+'''
+
+[sinks.grafana]
+  type = "prometheus_exporter"
+  inputs = ["parse"]
+  address = "0.0.0.0:9598"
