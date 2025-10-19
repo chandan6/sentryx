@@ -1,4 +1,4 @@
-#!/home/chandan/sentryx/.venv/bin/python3
+#!/home/chandan/sentryx/.venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

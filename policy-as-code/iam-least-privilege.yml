@@ -1,0 +1,28 @@
+policies:
+  - name: gcp-iam-wildcard-role-detector
+    description: |
+      Identifies all GCP IAM roles (Predefined or Custom) that contain 
+      a wildcard permission (e.g., *), which grants excessive access.
+
+    resource: gcp.iam-role
+
+    mode:
+      type: gcp-audit
+      methods:
+        - "google.iam.admin.v1.IAM.SetIamPolicy"
+        - "google.iam.admin.v1.IAM.CreateRole"
+        - "google.iam.admin.v1.IAM.UpdateRole"
+      # These are the correct, valid properties for a 2nd Gen function
+      memory-size: 256
+      max-instances: 5
+
+    filters:
+      - type: value
+        key: "detail.response.includedPermissions[]"
+        value: '*.*'
+        op: glob
+
+    actions:
+      - type: post-finding 
+        severity: HIGH 
+        source: cloud-custodian-paac

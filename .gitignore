@@ -1,7 +1,17 @@
-# Ignore Python environment and logs
+# Virtual environment
 .venv/
-__pycache__/
 
-# Ignore model files and saved data
-*.gguf
-/visualization/grafana-data/triage_results.csv
+# Cloud Custodian output
+.output/
+
+# Grafana runtime data (THIS FIXES YOUR ERROR)
+visualization/grafana-data/
+
+# Terraform state
+terraform/.terraform/
+terraform/plan.tfplan
+terraform/plan.json
+
+# Python cache
+__pycache__/
+*.pyc

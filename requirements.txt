@@ -1,10 +1,7 @@
 pandas
 numpy
-scikit-learn
-joblib
 langchain
-torch
-transformers
-accelerate
-llama-cpp-python
 langchain-community
+c7n
+c7n-gcp
+langchain-google-vertexai

@@ -1,0 +1,12 @@
+policies:
+  - name: gcp-iac-storage-no-public-access
+    resource: terraform.google_storage_bucket
+    description: |
+      Ensure all GCS buckets (defined in Terraform) 
+      have public access prevention enabled.
+    mode:
+      type: c7n-left
+    filters:
+      - type: value
+        key: uniform_bucket_level_access
+        value: false
