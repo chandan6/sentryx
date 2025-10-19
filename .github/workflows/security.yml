@@ -66,5 +66,6 @@ jobs:
       - name: Run c7n-left Scan
         run: |
           # Run custodian to scan the plan.json file against your policy folder
-          c7n-left run -p ../policy-as-code/ -f plan.json
+          # The --output=null flag is important to only show the failure
+          c7n-left run -p ../policy-as-code/ -f plan.json --output=null
         working-directory: ./terraform
