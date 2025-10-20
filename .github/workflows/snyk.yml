@@ -36,3 +36,14 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: snyk monitor
+
+      - name: Checkout via SSH
+        uses: actions/checkout@v3
+        with:
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Run Snyk Test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk test
+

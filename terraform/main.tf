@@ -12,8 +12,9 @@ provider "google" {
   region  = "us-central1"
 }
 
-# This resource is for testing the "shift-left" policy
-resource "google_storage_bucket" "test_bucket" {
-  name     = "sentryx-test-bucket-for-iac-scan"
-  location = "US"
+resource "google_storage_bucket" "test_bucket_iac" {
+  name                          = "sentryx-iac-test-bucket-12345" # Make sure this is globally unique
+  location                      = "US"
+  uniform_bucket_level_access = true  # <-- This is the line you are adding
+  
 }
