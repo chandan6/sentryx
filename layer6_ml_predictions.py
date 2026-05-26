@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+from google.cloud import bigquery
+
+PROJECT_ID = 'sentryx-474916'
+DATASET_ID = 'security_alerts_central1'
+bq_client = bigquery.Client(project=PROJECT_ID)
+
 def layer6_ml_predictions():
     """Run BigQuery ML predictions on recent alerts"""
     try:
@@ -36,3 +43,6 @@ def layer6_ml_predictions():
         """
         bq_client.query(train_query).result()
         print(f"⏳ Model trained. Run this function again in 2 minutes.")
+
+if __name__ == "__main__":
+    layer6_ml_predictions()
