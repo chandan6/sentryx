@@ -27,13 +27,13 @@ Instead of forcing human analysts to read raw telemetry, **Gemini 2.0 Flash** is
 To ensure deployment resilience and eliminate false positives, threat detection logic is engineered as code. All detection rules (written in Sigma format) are pushed through an automated GitHub Actions CI/CD pipeline, bridging theoretical detection with DevSecOps best practices.
 
 **Automated CI/CD GitHub Actions Pipeline:**
-![GitHub Actions Pipeline](Screenshot%202025-11-08%20195731.png)
+![GitHub Actions Pipeline](cicd_pipeline.png)
 
 **PyTest Validation against Synthetic Attack Simulations:**
-![PyTest Validation](Screenshot%202025-11-08%20195922.png)
+![PyTest Validation](pytest_validation.png)
 
 **Sigma Rule Engineering Mapped to MITRE ATT&CK (T1059.001):**
-![Sigma Rule](Screenshot%202025-11-09%20232610.png)
+![Sigma Rule](sigma_rule_mapping.png)
 
 ---
 
@@ -41,10 +41,10 @@ To ensure deployment resilience and eliminate false positives, threat detection 
 To combat sophisticated social engineering, I engineered an AI-driven phishing classifier. Beyond simple binary classification, the model extracts active Indicators of Compromise (IOCs), maps the threat to MITRE ATT&CK (T1566), and utilizes **SHAP (SHapley Additive exPlanations)** to provide transparent, explainable AI (XAI) insights into which specific text features triggered the classification.
 
 **Phishing Triage & IOC Extraction:**
-![Phishing Detection](Screenshot%202025-11-13%20212257.png)
+![Phishing Detection](phishing_triage.png)
 
 **Explainable AI (SHAP Force Plots) for Analyst Transparency:**
-![SHAP Explanation](Screenshot%202025-11-13%20212322.png)
+![SHAP Explanation](shap_force_plot.png)
 
 ---
 
@@ -52,10 +52,10 @@ To combat sophisticated social engineering, I engineered an AI-driven phishing c
 To secure the underlying infrastructure, I built a cloud-native vulnerability scanner designed to audit GCP environments and process synthetic cross-cloud telemetry. The scanner enumerates assets, evaluates configurations against security baselines (e.g., exposed Cloud Storage buckets, excessive IAM permissions), and automatically generates structured JSON reports with actionable remediation steps.
 
 **Cloud Asset Enumeration & Vulnerability Auditing:**
-![AWS Asset Scan](Screenshot%202025-11-13%20215404.png)
+![Cloud Asset Scan](cloud_asset_enumeration.png)
 
 **Automated Remediation Workflows:**
-![AWS Remediation](Screenshot%202025-11-13%20215513.png)
+![Cloud Remediation](automated_remediation.png)
 
 ---
 
