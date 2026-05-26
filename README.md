@@ -11,13 +11,18 @@
 The pipeline ingests raw JSON telemetry, routes it through cloud-native message brokers, and processes it via LLM and ML modules to generate automated root-cause analysis (RCA) and trigger defensive containment.
 
 ![Sentryx Architecture Diagram](architecture.png)
+![Telemetry Ingestion](telemetry_ingestion.png)
 
 ---
 
 ## 2. ML Confidence Boundary & Automated Triage
 SENTRYX utilizes a **BigQuery ML logistic regression model** to evaluate threat certainty, triggering autonomous containment protocols only when the model predicts malicious intent with extremely high statistical confidence. 
 
+![ML Confidence Boundary](ml_confidence_boundary.png)
+
 Instead of forcing human analysts to read raw telemetry, **Gemini 2.0 Flash** is integrated directly into the pipeline to parse JSON logs, map the behavior to the MITRE ATT&CK framework, assign a severity score, and generate a human-readable RCA narrative.
+
+![Automated Triage RCA](automated_triage_rca.png)
 
 *(Core backend processing modules — see CI/CD and auxiliary tools below for codebase validation).*
 
@@ -30,7 +35,7 @@ To ensure deployment resilience and eliminate false positives, threat detection 
 ![GitHub Actions Pipeline](cicd_pipeline.png)
 
 **PyTest Validation against Synthetic Attack Simulations:**
-![PyTest Validation](pytest_validation.png)
+*(Tests executed autonomously via CI/CD pipeline prior to Sigma rule deployment).*
 
 **Sigma Rule Engineering Mapped to MITRE ATT&CK (T1059.001):**
 ![Sigma Rule](sigma_rule_mapping.png)
@@ -52,10 +57,10 @@ To combat sophisticated social engineering, I engineered an AI-driven phishing c
 To secure the underlying infrastructure, I built a cloud-native vulnerability scanner designed to audit GCP environments and process synthetic cross-cloud telemetry. The scanner enumerates assets, evaluates configurations against security baselines (e.g., exposed Cloud Storage buckets, excessive IAM permissions), and automatically generates structured JSON reports with actionable remediation steps.
 
 **Cloud Asset Enumeration & Vulnerability Auditing:**
-![Cloud Asset Scan](cloud_asset_enumeration.png)
+*(Scanner output enumerates active IAM policies and misconfigured storage buckets).*
 
 **Automated Remediation Workflows:**
-![Cloud Remediation](automated_remediation.png)
+*(Generates structured JSON payloads triggering Pub/Sub remediation functions).*
 
 ---
 
