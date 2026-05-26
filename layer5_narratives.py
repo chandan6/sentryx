@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, time, random
+import time, random
 from google.cloud import bigquery
 import vertexai
 from vertexai.generative_models import GenerativeModel
