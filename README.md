@@ -72,4 +72,19 @@ This repository contains the raw Python and Bash execution scripts that power th
 * **Threat Simulation (`sophisticated_attacks.py`):** Generates highly advanced, synthetic attack payloads (e.g., LLM Prompt Injection, Kubernetes eBPF rootkits, TensorFlow data poisoning) to validate pipeline resilience.
 * **Streaming Ingestion (`pubsub_bq_bridge.py`):** Python subscriber client that continuously listens to Google Cloud Pub/Sub, batches telemetry, and streams it directly into BigQuery in real-time.
 * **AI Integration (`layer4_ai_analysis.py` & `layer5_narratives.py`):** Vertex AI orchestration scripts that prompt Gemini 2.0 Flash to output structured JSON triage data and human-readable RCA narratives.
+## 7. SENTRYX Deployment & Orchestration
+
+SENTRYX is not just a collection of scripts; it is an end-to-end autonomous pipeline. The architecture is orchestrated locally via **WSL2 (Ubuntu 22.04)**, creating a seamless DevSecOps bridge to Google Cloud Platform.
+
+## The Local-to-Cloud Bridge
+The system utilizes the **Google Cloud SDK** installed on the WSL instance, providing authenticated, low-latency access to cloud services:
+
+1. **Environment:** WSL2 Linux (local) acts as the control plane.
+2. **Authentication:** Managed via `gcloud auth application-default login`, ensuring secure service-to-service communication.
+3. **Data Plane:** - **Ingestion:** Local subscriber scripts listen to `Pub/Sub` topics configured in GCP.
+   - **AI Orchestration:** `Vertex AI` endpoints are accessed via the `google-cloud-aiplatform` SDK.
+   - **Storage/ML:** `BigQuery` acts as the unified data warehouse, with `ML.PREDICT` executing natively in the cloud while triggered by local logic.
+
+## Why this Architecture?
+By running the orchestration plane locally in WSL, I maintain high-speed access to debugging logs and local development tools (VS Code, Git, PyTest), while offloading the resource-heavy compute (LLM inference and ML model training) to GCP. This hybrid approach minimizes operational cost while maximizing deployment velocity.
 * **Machine Learning (`layer6_ml_predictions.py`):** SQL-wrapped Python logic to train, evaluate, and execute the logistic regression model directly within the BigQuery data warehouse.
