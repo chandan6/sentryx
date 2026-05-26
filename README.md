@@ -1,6 +1,8 @@
 # SENTRYX: Autonomous AI-SOC & Security Engineering Portfolio
 
-**SENTRYX** is a stateless, AI-native Security Operations Center (SOC) architecture designed to automate L1/L2 telemetry triage, establish ML-driven classification boundaries for autonomous containment, and enforce Detection-as-Code (DaC) CI/CD pipelines.
+**SENTRYX** is a stateless, AI-native Security Operations Center (SOC) architecture designed to automate L1/L2 telemetry triage, establish ML-driven classification boundaries for autonomous containment, and enforce Detection-as-Code (DaC) CI/CD pipelines. 
+
+**Deployment Architecture:** SENTRYX is orchestrated via a WSL2 Linux environment, utilizing the Google Cloud SDK for seamless integration with Pub/Sub and Vertex AI endpoints.
 
 * **Recognition:** Evaluated at a €300,000 valuation tier by the EWOR Fellowship Program (Europe).
 * **Core Technologies:** Google Cloud Platform (Pub/Sub, BigQuery ML), Gemini 2.0 Flash, Python, GitHub Actions.
