@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-PROJECT="sentryx-474916"
+PROJECT="sentryx"
 DATASET="security_alerts_central1"
-YOUR_EMAIL="chandankelur26@gmail.com"
+YOUR_EMAIL=""
 
 echo "🔧 SENTRYX: Full Pipeline Setup..."
 
