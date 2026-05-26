@@ -49,7 +49,7 @@ To combat sophisticated social engineering, I engineered an AI-driven phishing c
 ---
 
 ## 5. Automated Cloud Misconfiguration Scanner
-To secure underlying infrastructure, I built a cloud-native vulnerability scanner designed to audit AWS environments. The scanner enumerates assets (EC2, S3, IAM), evaluates configurations against security baselines (e.g., exposed S3 buckets, excessive IAM console access), and automatically generates structured JSON reports with actionable remediation steps.
+To secure the underlying infrastructure, I built a cloud-native vulnerability scanner designed to audit GCP environments and process synthetic cross-cloud telemetry. The scanner enumerates assets, evaluates configurations against security baselines (e.g., exposed Cloud Storage buckets, excessive IAM permissions), and automatically generates structured JSON reports with actionable remediation steps.
 
 **Cloud Asset Enumeration & Vulnerability Auditing:**
 ![AWS Asset Scan](Screenshot%202025-11-13%20215404.png)
