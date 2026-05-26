@@ -10,7 +10,7 @@
 ## 1. Enterprise Architecture & Telemetry Ingestion
 The pipeline ingests raw JSON telemetry, routes it through cloud-native message brokers, and processes it via LLM and ML modules to generate automated root-cause analysis (RCA) and trigger defensive containment.
 
-![Sentryx Architecture Diagram](Screenshot%202026-05-26%20151933.jpg)
+![Sentryx Architecture Diagram](architecture.png)
 
 ---
 
