@@ -56,3 +56,13 @@ To secure underlying infrastructure, I built a cloud-native vulnerability scanne
 
 **Automated Remediation Workflows:**
 ![AWS Remediation](Screenshot%202025-11-13%20215513.png)
+
+---
+
+## 6. Backend Codebase & Orchestration Pipeline
+This repository contains the raw Python and Bash execution scripts that power the SENTRYX autonomous pipeline. Key infrastructure files include:
+
+* **Threat Simulation (`sophisticated_attacks.py`):** Generates highly advanced, synthetic attack payloads (e.g., LLM Prompt Injection, Kubernetes eBPF rootkits, TensorFlow data poisoning) to validate pipeline resilience.
+* **Streaming Ingestion (`pubsub_bq_bridge.py`):** Python subscriber client that continuously listens to Google Cloud Pub/Sub, batches telemetry, and streams it directly into BigQuery in real-time.
+* **AI Integration (`layer4_ai_analysis.py` & `layer5_narratives.py`):** Vertex AI orchestration scripts that prompt Gemini 2.0 Flash to output structured JSON triage data and human-readable RCA narratives.
+* **Machine Learning (`layer6_ml_predictions.py`):** SQL-wrapped Python logic to train, evaluate, and execute the logistic regression model directly within the BigQuery data warehouse.
